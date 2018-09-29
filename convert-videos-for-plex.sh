@@ -132,11 +132,15 @@ for i in "${path}"**/*.*; do
             echo
             echo "${count}) Checking: "$i
 
-            if [[ $(mediainfo --Inform="Video;%Format%" "$i") == *$codec* 
-                || $(mediainfo --Inform="Video;%Format%" "$i") == "HEVC" 
-                || $(mediainfo --Inform="Video;%Format%" "$i") == "xvid" 
-                || ($(mediainfo --Inform="Video;%Format%" "$i") == "AVC" 
-                    && ($(mediainfo --Inform="Video;%Format_Profile%" "$i") == *"@L5"*
+            echo $(mediainfo --Inform="Video;%Format%" "$i")
+            echo $(mediainfo --Inform="Video;%Format_Profile%" "$i")
+
+            if [[ $(mediainfo --Inform="Video;%Format%" "$i") == *$codec*
+                || $(mediainfo --Inform="Video;%Format%" "$i") == "HEVC"
+                || $(mediainfo --Inform="Video;%Format%" "$i") == "xvid"
+                || ($(mediainfo --Inform="Video;%Format%" "$i") == "AVC"
+                    && ($(mediainfo --Inform="Video;%Format_Profile%" "$i") == *"@L4"*
+                        || $(mediainfo --Inform="Video;%Format_Profile%" "$i") == *"@L5"*
                         || $(mediainfo --Inform="Video;%Format_Profile%" "$i") == "High@"*))
                 ]]; then
                 # Get file name minus extension
