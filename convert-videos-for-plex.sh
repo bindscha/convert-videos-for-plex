@@ -139,6 +139,7 @@ for i in "${path}"**/*.*; do
                 || $(mediainfo --Inform="Video;%Format%" "$i") == "HEVC"
                 || $(mediainfo --Inform="Video;%Format%" "$i") == "xvid"
                 || ($(mediainfo --Inform="Video;%Format%" "$i") == "AVC"
+		    && $i != *.mp4
                     && ($(mediainfo --Inform="Video;%Format_Profile%" "$i") == *"@L4"*
                         || $(mediainfo --Inform="Video;%Format_Profile%" "$i") == *"@L5"*
                         || $(mediainfo --Inform="Video;%Format_Profile%" "$i") == "High@"*))
